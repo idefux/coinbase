@@ -9,11 +9,19 @@ def poll():
         try:
             timestamp = get_timestamp();
 
-            filename = u"data/coinbase_prices_{}".format(timestamp_to_Y_m_d_str(timestamp))
+            filename = u"data/coinbase_prices_ETH-EUR{}".format(timestamp_to_Y_m_d_str(timestamp))
 
             spot = get_spot_price()
             buy = get_buy_price()
             sell = get_sell_price()
+
+            log_spot_buy_sell_price(filename, timestamp, spot, buy, sell)
+
+            filename = u"data/coinbase_prices_ETH-USD_{}".format(timestamp_to_Y_m_d_str(timestamp))
+
+            spot = get_spot_price(currency="USD")
+            buy = get_buy_price(currency="USD")
+            sell = get_sell_price(currency="USD")
 
             log_spot_buy_sell_price(filename, timestamp, spot, buy, sell)
 
